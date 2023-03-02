@@ -1,12 +1,18 @@
 import webpack from "webpack";
-import { buildPlugins, buildLoaders, buildResolvers } from "./index";
+import {
+  buildPlugins,
+  buildLoaders,
+  buildResolvers,
+  buildDevServer,
+  buildOptimization,
+} from "./index";
 
 import { IBuildOptions } from "./types";
 
 export function buildWebpackConfig(
   options: IBuildOptions
 ): webpack.Configuration {
-  const { mode, paths } = options;
+  const { mode, paths, isDev } = options;
 
   return {
     mode, // модифікація збірки
@@ -17,10 +23,13 @@ export function buildWebpackConfig(
       path: paths.build,
       clean: true, // очищення файлів в папці збірки перед новою збіркою
     },
-    plugins: buildPlugins(paths),
+    plugins: buildPlugins(paths, isDev),
     module: {
-      rules: buildLoaders(),
+      rules: buildLoaders(isDev),
     },
     resolve: buildResolvers(), // вказуємо розширення для тих файлив при import яких ми не будемо вказувати розширення
+    devtool: isDev ? "inline-source-map" : undefined,
+    devServer: isDev ? buildDevServer(options) : undefined,
+    optimization: buildOptimization(isDev),
   };
 }
