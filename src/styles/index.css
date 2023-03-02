@@ -1,0 +1,26 @@
+@import "./reset.css";
+@import "./animations.css";
+@import "./variables.css";
+@import "./typography.css";
+
+@import "./themes/light.css";
+@import "./themes/dark.css";
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-size: var(--basic-font-size);
+  line-height: var(--basic-line-height);
+  font-family: var(--space-grotesk);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--app-background-color);
+  overflow: hidden;
+  user-select: none;
+}
