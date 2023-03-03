@@ -2,6 +2,14 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import webpack from "webpack";
 
 export function buildLoaders(isDev: boolean): webpack.RuleSetRule[] {
+  const babelLoader = {
+    test: /\.(js|jsx|tsx")$/,
+    use: {
+      loader: "babel-loader",
+    },
+    exclude: /node_modules/,
+  };
+
   const fileLoader = {
     test: /\.(png|jpe?g|gif)$/i,
     use: [
@@ -37,5 +45,5 @@ export function buildLoaders(isDev: boolean): webpack.RuleSetRule[] {
     ],
   };
 
-  return [fileLoader, tsLoader, cssLoader];
+  return [fileLoader, babelLoader, tsLoader, cssLoader];
 }
