@@ -28,11 +28,19 @@
     // можно писать такой
     // import React from 'react';
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"],
+      "@app": ["src/app"],
+      "@entities": ["src/entities"],
+      "@pages": ["src/pages"]
+    }
   },
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS"
     }
-  }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

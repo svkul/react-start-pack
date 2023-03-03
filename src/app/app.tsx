@@ -1,11 +1,8 @@
 import { FC, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import { Sidebar, Header } from "./components";
-
-import { Home } from "./pages/home";
-import { About } from "./pages/about";
-import { Error } from "./pages/error";
+import { Sidebar, Header } from "@entities";
+import { Home, About, Error } from "@pages";
 
 import st from "./app.module.css";
 

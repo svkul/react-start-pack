@@ -4,6 +4,10 @@ export interface IBuildPaths {
   entry: string;
   build: string;
   html: string;
+  src: string;
+  app: string;
+  entities: string;
+  pages: string;
 }
 
 export interface IBuildEnv {

@@ -1,6 +1,6 @@
 import { FC, memo } from "react";
 
-import { useTheme } from "../../feature";
+import { useTheme } from "../../features";
 
 interface HeaderProps {
   className?: string;

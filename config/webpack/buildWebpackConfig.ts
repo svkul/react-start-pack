@@ -27,7 +27,7 @@ export function buildWebpackConfig(
     module: {
       rules: buildLoaders(isDev),
     },
-    resolve: buildResolvers(), // вказуємо розширення для тих файлив при import яких ми не будемо вказувати розширення
+    resolve: buildResolvers(paths), // вказуємо розширення для тих файлив при import яких ми не будемо вказувати розширення
     devtool: isDev ? "inline-source-map" : undefined,
     devServer: isDev ? buildDevServer(options) : undefined,
     optimization: buildOptimization(isDev),
