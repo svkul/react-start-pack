@@ -1,0 +1,24 @@
+.button {
+  border-radius: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s color 0.3s;
+}
+
+.primary {
+  padding: 10px 15px;
+  background-color: red;
+  color: #fff;
+}
+
+.secondary {
+  padding: 5px 10px;
+  background-color: burlywood;
+  color: #fff;
+}
+
+.disabled {
+  cursor: not-allowed;
+  filter: grayscale(80%);
+}

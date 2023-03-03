@@ -6,8 +6,12 @@ export interface IBuildPaths {
   html: string;
   src: string;
   app: string;
+  assets: string;
   entities: string;
+  features: string;
   pages: string;
+  shared: string;
+  widgets: string;
 }
 
 export interface IBuildEnv {

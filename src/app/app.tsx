@@ -1,31 +1,37 @@
 import { FC, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
 
-import { Sidebar, Header } from "@entities";
-import { Home, About, Error } from "@pages";
+import { Sidebar, Header } from "@widgets";
+import { Icons, Icon, EIcons } from "@shared";
+import { AppRouter } from "./router";
 
 import st from "./app.module.css";
+
+import "./i18n/index";
+
+import photo from "@assets/images/photo.jpeg";
 
 export const App: FC = () => {
   return (
     <section className={st.wrapper}>
-      <header className={st.header}>
-        <Header />
-      </header>
+      <Icons />
 
-      <section className={st.sidebar}>
-        <Sidebar />
-      </section>
+      <Suspense fallback="Lang Loading">
+        <header className={st.header}>
+          <Icon name={EIcons.VIE} width={24} height={16} />
 
-      <main className={st.main}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </Suspense>
-      </main>
+          <Header />
+        </header>
+
+        <section className={st.sidebar}>
+          <Sidebar />
+        </section>
+
+        <main className={st.main}>
+          <AppRouter />
+
+          <img src={photo} alt="photo" />
+        </main>
+      </Suspense>
     </section>
   );
 };

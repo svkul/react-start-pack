@@ -11,8 +11,12 @@ export function buildResolvers(paths: IBuildPaths): webpack.ResolveOptions {
     mainFiles: ["index"],
     alias: {
       "@app": paths.app,
+      "@assets": paths.assets,
       "@entities": paths.entities,
+      "@features": paths.features,
       "@pages": paths.pages,
+      "@shared": paths.shared,
+      "@widgets": paths.widgets,
     },
   };
 }
