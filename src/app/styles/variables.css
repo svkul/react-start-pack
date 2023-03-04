@@ -24,16 +24,13 @@
 
   /* purple */
   --color-pr1: #9c16ef;
-
   --xs-0: 0;
   --sm-600: 600px;
   --md-900: 900px;
   --lg-1280: 1280px;
   --xl-1536: 1536px;
-
   --basic-font-size: 16px;
   --basic-line-height: 24px;
-
   --space-grotesk: "Space Grotesk", "-apple-system", "BlinkMacSystemFont",
     "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "sans-serif",
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

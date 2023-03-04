@@ -1,10 +1,10 @@
-@import "./reset.css";
-@import "./animations.css";
-@import "./variables.css";
-@import "./typography.css";
+@import url("./reset.css");
+@import url("./animations.css");
+@import url("./variables.css");
+@import url("./typography.css");
 
-@import "./themes/light.css";
-@import "./themes/dark.css";
+@import url("./themes/light.css");
+@import url("./themes/dark.css");
 
 html,
 body,
@@ -15,12 +15,12 @@ body,
 
 body {
   margin: 0;
-  font-size: var(--basic-font-size);
-  line-height: var(--basic-line-height);
+  background-color: var(--app-background-color);
   font-family: var(--space-grotesk);
+  font-size: var(--basic-font-size);
+  overflow: hidden;
+  line-height: var(--basic-line-height);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--app-background-color);
-  overflow: hidden;
   user-select: none;
 }

@@ -8,14 +8,14 @@
 
 .primary {
   padding: 10px 15px;
-  background-color: red;
   color: #fff;
+  background-color: red;
 }
 
 .secondary {
   padding: 5px 10px;
-  background-color: burlywood;
   color: #fff;
+  background-color: burlywood;
 }
 
 .disabled {
