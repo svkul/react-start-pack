@@ -7,16 +7,19 @@ import { defaultTheme } from "./features";
 import "./app/styles/index.css";
 
 const container = document.getElementById("root");
-const root = createRoot(container!);
 
-const body = document.querySelector("body");
+if (container) {
+  const root = createRoot(container);
 
-if (body) {
-  body.dataset.theme = defaultTheme;
+  const body = document.querySelector("body");
+
+  if (body) {
+    body.dataset.theme = defaultTheme;
+  }
+
+  root.render(
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
 }
-
-root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
