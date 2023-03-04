@@ -22,7 +22,7 @@ export const Button: FC<IButtonProps> = memo(
     disabled,
     onClick,
     ...otherProps
-  }) => {
+  }: IButtonProps) => {
     return (
       <button
         className={classnames(st.button, st[theme], className, {

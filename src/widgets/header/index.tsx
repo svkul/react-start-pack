@@ -8,7 +8,7 @@ interface IHeaderProps {
   className?: string;
 }
 
-export const Header: FC<IHeaderProps> = memo(({ className }) => {
+export const Header: FC<IHeaderProps> = memo(({ className }: IHeaderProps) => {
   const { theme, toggleTheme } = useTheme();
   const { t, i18n } = useTranslation();
 

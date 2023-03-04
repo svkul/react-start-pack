@@ -7,7 +7,8 @@
     "start": "webpack serve --env port=3000 --env mode=development",
     "build:prod": "webpack --env port=3000 --env mode=production",
     "build:dev": "webpack --env port=3000 --env mode=development",
-    "eslint": "eslint **/*.{ts,tsx}"
+    "eslint": "eslint **/*.{ts,tsx}",
+    "eslint:fix": "eslint **/*.{ts,tsx} --fix"
   },
   "keywords": [],
   "author": "",

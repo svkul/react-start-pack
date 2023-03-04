@@ -14,7 +14,15 @@ interface IIconProps {
 }
 
 export const Icon: FC<IIconProps> = memo(
-  ({ className, name, size = 16, height, width, style, onClick }) => {
+  ({
+    className,
+    name,
+    size = 16,
+    height,
+    width,
+    style,
+    onClick,
+  }: IIconProps) => {
     return (
       <svg
         className={classnames(className)}

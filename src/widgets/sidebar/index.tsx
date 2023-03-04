@@ -9,24 +9,30 @@ interface ISidebarProps {
   className?: string;
 }
 
-export const Sidebar: FC<ISidebarProps> = memo(({ className }) => {
-  const { t } = useTranslation();
+export const Sidebar: FC<ISidebarProps> = memo(
+  ({ className }: ISidebarProps) => {
+    const { t } = useTranslation();
 
-  return (
-    <>
-      <NavLink
-        to="/"
-        className={({ isActive }) => (isActive ? st["nav-active"] : undefined)}
-      >
-        {t("sidebar-home")}
-      </NavLink>
+    return (
+      <>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? st["nav-active"] : undefined
+          }
+        >
+          {t("sidebar-home")}
+        </NavLink>
 
-      <NavLink
-        to="/about"
-        className={({ isActive }) => (isActive ? st["nav-active"] : undefined)}
-      >
-        {t("sidebar-about")}
-      </NavLink>
-    </>
-  );
-});
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive ? st["nav-active"] : undefined
+          }
+        >
+          {t("sidebar-about")}
+        </NavLink>
+      </>
+    );
+  }
+);
