@@ -1,7 +1,7 @@
 import { FC, Suspense } from "react";
 
 import { Sidebar, Header } from "@widgets";
-import { Icons, Icon, EIcons } from "@shared";
+import { Icons, Icon, EIcons, Loader } from "@shared";
 import { AppRouter } from "./router";
 import { ErrorBoundary } from "./providers";
 
@@ -14,7 +14,7 @@ export const App: FC = () => {
     <section className={st.wrapper}>
       <Icons />
 
-      <Suspense fallback="Lang Loading">
+      <Suspense fallback={<Loader />}>
         <header className={st.header}>
           <Icon name={EIcons.VIE} width={24} height={16} />
 

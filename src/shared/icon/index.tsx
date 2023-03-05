@@ -3,7 +3,7 @@ import classnames from "classnames";
 
 import { EIcons } from "../icons";
 
-interface IIconProps {
+export interface IIconProps {
   className?: string;
   name: EIcons;
   size?: number;
@@ -36,5 +36,5 @@ export const Icon: FC<IIconProps> = memo(
         <use xlinkHref={`#${name}`} />
       </svg>
     );
-  }
+  },
 );
