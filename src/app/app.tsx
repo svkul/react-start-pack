@@ -3,12 +3,11 @@ import { FC, Suspense } from "react";
 import { Sidebar, Header } from "@widgets";
 import { Icons, Icon, EIcons } from "@shared";
 import { AppRouter } from "./router";
+import { ErrorBoundary } from "./providers";
 
 import st from "./app.module.css";
 
 import "./i18n/index";
-
-import photo from "@assets/images/photo.jpeg";
 
 export const App: FC = () => {
   return (
@@ -27,9 +26,9 @@ export const App: FC = () => {
         </section>
 
         <main className={st.main}>
-          <AppRouter />
-
-          <img src={photo} alt="photo" />
+          <ErrorBoundary>
+            <AppRouter />
+          </ErrorBoundary>
         </main>
       </Suspense>
     </section>

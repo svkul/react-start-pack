@@ -7,7 +7,7 @@ import { IBuildPaths } from "../webpack/types";
 
 export function buildPlugins(
   paths: IBuildPaths,
-  isDev: boolean
+  isDev: boolean,
 ): webpack.WebpackPluginInstance[] {
   const plugins = [
     new HTMLWebpackPlugin({
@@ -21,12 +21,12 @@ export function buildPlugins(
   ];
 
   if (isDev) {
-    plugins.push(new ReactRefreshWebpackPlugin());
+    plugins.push(new ReactRefreshWebpackPlugin({ overlay: false })); // overlay: false відмінити вивід помилок в iframe
     plugins.push(new webpack.HotModuleReplacementPlugin());
     plugins.push(
       new webpack.DefinePlugin({
         __IS_DEV__: JSON.stringify(isDev),
-      })
+      }),
     );
   }
 

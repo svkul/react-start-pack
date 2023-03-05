@@ -1,5 +1,7 @@
 {
   "lang-text": "Change languadge",
   "sidebar-home": "Home",
-  "sidebar-about": "About"
+  "sidebar-about": "About",
+  "boundary-error": "An unexpected error has occurred...",
+  "boundary-error-button-text": "Reload the page"
 }

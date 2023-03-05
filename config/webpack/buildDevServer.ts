@@ -6,5 +6,8 @@ export function buildDevServer(options: IBuildOptions): DevServerConfiguration {
     port: options.port,
     open: true,
     historyApiFallback: true,
+    client: {
+      overlay: false, // overlay: false відмінити вивід помилок в iframe
+    },
   };
 }
