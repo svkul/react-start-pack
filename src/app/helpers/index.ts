@@ -1,1 +1,1 @@
-export { renderWithTranslation } from "./render-with-translation";
+export { renderWithProviders } from "./render-with-providers";

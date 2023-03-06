@@ -6,13 +6,15 @@
 
 .nav-item {
   color: var(--app-font-color);
+  text-decoration: none;
 }
 
 .nav-item:focus-visible {
-  outline: 2px solid red;
+  outline: 2px solid #2196f3;
   outline-offset: 2px;
 }
 
 .nav-active {
-  color: red;
+  color: #2196f3;
+  text-decoration: underline;
 }

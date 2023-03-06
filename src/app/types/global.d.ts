@@ -24,5 +24,3 @@ declare module "*.gif" {
 }
 
 declare const __IS_DEV__: boolean;
-
-declare module "@app/helpers";

@@ -2,6 +2,8 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 
 import { App } from "@app";
+import { StoreProvider } from "@app/providers";
+
 import { defaultTheme } from "./features";
 
 import "./app/styles/index.css";
@@ -18,8 +20,10 @@ if (container) {
   }
 
   root.render(
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <StoreProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </StoreProvider>,
   );
 }

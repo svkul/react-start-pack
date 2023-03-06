@@ -1,0 +1,8 @@
+.wrapper {
+  padding: 16px;
+  border: 1px solid var(--app-font-color);
+}
+
+.text {
+  margin-bottom: 16px;
+}
