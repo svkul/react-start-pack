@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { FC, memo, CSSProperties } from "react";
 import classnames from "classnames";
 
 import { EIcons } from "../icons";
@@ -9,7 +9,7 @@ export interface IIconProps {
   size?: number;
   height?: number;
   width?: number;
-  style?: any;
+  style?: CSSProperties;
   onClick?: () => void;
 }
 

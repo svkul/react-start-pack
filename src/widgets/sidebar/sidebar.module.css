@@ -1,3 +1,18 @@
+.nav {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item {
+  color: var(--app-font-color);
+}
+
+.nav-item:focus-visible {
+  outline: 2px solid red;
+  outline-offset: 2px;
+}
+
 .nav-active {
   color: red;
 }

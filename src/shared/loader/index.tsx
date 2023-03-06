@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import st from "./loader.module.css";
 
-export const Loader: FC = () => {
+export const Loader: FC = memo(() => {
   return (
     <div className={st.loader}>
       <div></div>
@@ -11,4 +11,4 @@ export const Loader: FC = () => {
       <div></div>
     </div>
   );
-};
+});

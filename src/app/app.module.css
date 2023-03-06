@@ -7,7 +7,12 @@
 }
 
 .header {
+  height: 50px;
+  padding: 10px 16px;
   grid-area: header;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--header-box-shadow);
 }
 
 .sidebar {
@@ -15,5 +20,6 @@
 }
 
 .main {
+  padding: 16px;
   grid-area: main;
 }

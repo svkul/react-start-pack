@@ -1,3 +1,13 @@
-body[data-theme="dark"] {
+[data-theme="dark"] {
   --app-background-color: var(--color-b0);
+  --app-font-color: #fff;
+
+  /* header */
+  --header-box-shadow: 0 2px 6px #000;
+
+  /* modal */
+  --modal-box-shadow: 0 0 6px #000;
+
+  /* loader */
+  --loader-default-color: #fff;
 }

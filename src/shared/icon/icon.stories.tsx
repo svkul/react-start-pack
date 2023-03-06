@@ -12,7 +12,7 @@ export default {
 } as ComponentMeta<typeof Icon>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Icon> = args => (
+const Template: ComponentStory<typeof Icon> = () => (
   <section
     style={{
       display: "flex",
@@ -20,6 +20,7 @@ const Template: ComponentStory<typeof Icon> = args => (
       gap: "10px",
     }}
   >
+    {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
     {Object.entries(icons).map(([_, iconData]) => {
       return (
         <section

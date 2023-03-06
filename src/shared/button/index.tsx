@@ -6,6 +6,7 @@ import st from "./button.module.css";
 export enum EButtonTheme {
   PRIMARY = "primary",
   SECONDARY = "secondary",
+  ICON = "icon",
 }
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -29,7 +30,7 @@ export const Button: FC<IButtonProps> = memo(
           [st.disabled]: disabled,
         })}
         {...otherProps}
-        onClick={(e) => {
+        onClick={e => {
           if (disabled) {
             return;
           }
@@ -42,5 +43,5 @@ export const Button: FC<IButtonProps> = memo(
         {children}
       </button>
     );
-  }
+  },
 );

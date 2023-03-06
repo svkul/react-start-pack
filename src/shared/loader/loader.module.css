@@ -11,11 +11,11 @@
   height: 64px;
   margin: 8px;
   display: block;
-  border: 8px solid #fff;
+  border: 8px solid var(--loader-default-color);
   box-sizing: border-box;
   border-radius: 50%;
   animation: loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent;
+  border-color: var(--loader-default-color) transparent transparent;
 }
 
 .loader div:nth-child(1) {

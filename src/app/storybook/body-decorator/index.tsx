@@ -6,7 +6,7 @@ import "../../styles/index.css";
 
 export function bodyDecorator(StoryComponent: Story) {
   return (
-    <div>
+    <div data-theme="light">
       <Icons />
 
       <StoryComponent />

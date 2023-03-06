@@ -13,8 +13,10 @@ body,
   height: 100%;
 }
 
-body {
+[data-theme="light"],
+[data-theme="dark"] {
   margin: 0;
+  color: var(--app-font-color);
   background-color: var(--app-background-color);
   font-family: var(--space-grotesk);
   font-size: var(--basic-font-size);
