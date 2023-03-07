@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export enum ETheme {
   LIGHT = "light",
@@ -17,10 +17,10 @@ export const defaultTheme =
 
 export function useTheme(): IUseTheme {
   const [theme, setTheme] = useState<ETheme>(
-    document.querySelector("body")?.dataset.theme as ETheme
+    document.querySelector("body")?.dataset.theme as ETheme,
   );
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     const body = document.querySelector("body");
 
     const newTheme = theme === ETheme.LIGHT ? ETheme.DARK : ETheme.LIGHT;
@@ -31,7 +31,7 @@ export function useTheme(): IUseTheme {
     }
 
     localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
-  };
+  }, [setTheme, theme]);
 
   return {
     theme,

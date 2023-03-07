@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 
 import { Button } from "@shared";
-import { getCounterValue } from "@entities";
 
+import { getCounterValue } from "../model/selectors";
 import { counterActions } from "../model/slice";
 
 import st from "./counter.module.css";

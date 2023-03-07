@@ -9,7 +9,17 @@ i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
-  resources: { en: { translations: {} } },
+  resources: {
+    en: {
+      translations: {},
+      "auth-form": {
+        "auth-form-send-btn": "Send",
+        "auth-form-login": "Login",
+        "auth-form-placeholder-name": "Name",
+        "auth-form-placeholder-password": "Password",
+      },
+    },
+  },
 });
 
 export default i18n;

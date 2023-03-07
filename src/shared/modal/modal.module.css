@@ -23,6 +23,8 @@
 }
 
 .close {
+  width: 24px;
+  height: 24px;
   margin-left: auto;
   padding: 0;
   color: var(--app-font-color);

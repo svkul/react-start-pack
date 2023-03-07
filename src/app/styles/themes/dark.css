@@ -5,6 +5,9 @@
   /* header */
   --header-box-shadow: 0 2px 6px #000;
 
+  /* sidebar */
+  --sidebar-box-shadow: 0 4px 6px #000;
+
   /* modal */
   --modal-box-shadow: 0 0 6px #000;
 

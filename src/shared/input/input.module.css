@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  padding: 10px 15px;
+  color: var(--app-font-color);
+  background-color: transparent;
+  border: 1px solid #373737;
+}
+
+.input:focus-visible {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+.input-error {
+  border-color: red;
+}
+
+.input-error:focus-visible {
+  outline: 2px solid red;
+  outline-offset: 2px;
+}
+
+.error {
+  color: red;
+}
+
+.input::placeholder {
+  color: #373737;
+}

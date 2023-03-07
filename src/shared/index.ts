@@ -1,3 +1,4 @@
+export { Input } from "./input";
 export { Loader } from "./loader";
 export { Icon } from "./icon";
 export { Modal } from "./modal";

@@ -15,6 +15,7 @@ export default {
 const Template: ComponentStory<typeof Icon> = () => (
   <section
     style={{
+      padding: "16px",
       display: "flex",
       flexDirection: "column",
       gap: "10px",

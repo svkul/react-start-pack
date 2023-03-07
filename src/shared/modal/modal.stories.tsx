@@ -13,6 +13,7 @@ const Template: ComponentStory<typeof Modal> = args => <Modal {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   isOpen: true,
-  children: "Test text",
+  title: "Title",
+  children: <div style={{ padding: "0 16px 16px" }}>Test text</div>,
   withPortal: false,
 };
