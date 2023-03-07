@@ -1,3 +1,4 @@
+import { StoreDecorator } from "@app/storybook/store-decorator";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { LoginModal } from "./index";
@@ -19,3 +20,11 @@ Primary.args = {
   withPortal: false,
   isOpened: true,
 };
+Primary.decorators = [
+  StoreDecorator({
+    loginForm: {
+      username: "admin",
+      password: "123",
+    },
+  }),
+];

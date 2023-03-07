@@ -1,7 +1,10 @@
-import { ChangeEvent, FC, useCallback, useState } from "react";
-import classnames from "classnames";
+import { ChangeEvent, useCallback, memo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useTranslation } from "react-i18next";
+import classnames from "classnames";
 
+import { getLoginState, loginActions, loginByUsername } from "@features";
 import { Button, Input } from "@shared";
 
 import st from "./login-form.module.css";
@@ -10,29 +13,32 @@ export interface ILoginFormProps {
   className?: string;
 }
 
-export const LoginForm: FC<ILoginFormProps> = ({ className }) => {
+export const LoginForm = memo(({ className }: ILoginFormProps) => {
   const { t } = useTranslation("auth-form");
-
-  const [userName, setUserName] = useState<string>("");
-  const [userPassword, setUserPassword] = useState<string>("");
+  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const { username, password, error, isLoading } = useSelector(getLoginState);
 
   const handleUserNameChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
 
-      setUserName(value);
+      dispatch(loginActions.setUserName(value));
     },
-    [setUserName],
+    [dispatch],
   );
 
   const handlePasswordChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
 
-      setUserPassword(value);
+      dispatch(loginActions.setPassword(value));
     },
-    [setUserPassword],
+    [dispatch],
   );
+
+  const handleLoginClick = useCallback(() => {
+    dispatch(loginByUsername({ username, password }));
+  }, [dispatch, username, password]);
 
   return (
     <form
@@ -42,21 +48,29 @@ export const LoginForm: FC<ILoginFormProps> = ({ className }) => {
       onSubmit={e => e.preventDefault()}
     >
       <Input
-        value={userName}
+        value={username}
         autoFocus
         placeholder={t("auth-form-placeholder-name") || ""}
         onChange={handleUserNameChange}
       />
 
       <Input
-        value={userPassword}
+        value={password}
+        type="password"
         placeholder={t("auth-form-placeholder-password") || ""}
         onChange={handlePasswordChange}
       />
 
-      <Button className={st.button} type="submit">
+      {error && <p>{error}</p>}
+
+      <Button
+        className={st.button}
+        type="button"
+        disabled={isLoading}
+        onClick={handleLoginClick}
+      >
         {t("auth-form-send-btn")}
       </Button>
     </form>
   );
-};
+});

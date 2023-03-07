@@ -7,15 +7,19 @@ import {
   userReducer,
 } from "@entities";
 
+import { ILoginSchema, loginReducer } from "@features";
+
 export interface IStateScheme {
   counter: ICounterSchema;
   user: IUserSchema;
+  loginForm: ILoginSchema;
 }
 
 export function createReduxStore(initialState?: IStateScheme) {
   const rootReducers: ReducersMapObject<IStateScheme> = {
     counter: counterReducer,
     user: userReducer,
+    loginForm: loginReducer,
   };
 
   return configureStore<IStateScheme>({

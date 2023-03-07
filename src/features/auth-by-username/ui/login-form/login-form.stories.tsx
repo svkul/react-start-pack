@@ -1,3 +1,4 @@
+import { StoreDecorator } from "@app/storybook/store-decorator";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import { LoginForm } from "./index";
@@ -16,3 +17,8 @@ const Template: ComponentStory<typeof LoginForm> = args => (
 
 export const Primary = Template.bind({});
 Primary.args = {};
+Primary.decorators = [
+  StoreDecorator({
+    loginForm: { username: "admin", password: "123" },
+  }),
+];

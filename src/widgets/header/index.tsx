@@ -1,9 +1,17 @@
-import { FC, memo, useCallback, useState } from "react";
+import { FC, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 
-import { useTheme, ETheme, LoginModal } from "@features";
+import {
+  useTheme,
+  ETheme,
+  LoginModal,
+  loginActions,
+  getIsModalOpen,
+} from "@features";
 import { Button, EButtonTheme, Icon, EIcons } from "@shared";
+import { getUserAuthData, userActions } from "@entities";
 
 import st from "./header.module.css";
 
@@ -13,17 +21,23 @@ interface IHeaderProps {
 
 export const Header: FC<IHeaderProps> = memo(({ className }: IHeaderProps) => {
   const { theme, toggleTheme } = useTheme();
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
 
-  const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
+  const authData = useSelector(getUserAuthData);
+  const isModalOpened = useSelector(getIsModalOpen);
 
   const handleOpenModal = useCallback(() => {
-    setIsModalOpened(true);
-  }, [setIsModalOpened]);
+    dispatch(loginActions.setModalOpen(true));
+  }, [dispatch]);
 
   const handleCloseModal = useCallback(() => {
-    setIsModalOpened(false);
-  }, [setIsModalOpened]);
+    dispatch(loginActions.reset());
+  }, [dispatch]);
+
+  const handleLogout = useCallback(() => {
+    dispatch(userActions.logout());
+  }, [dispatch]);
 
   const handleThemeChange = useCallback(() => {
     i18n.changeLanguage(i18n.language === "en" ? "uk" : "en");
@@ -31,11 +45,17 @@ export const Header: FC<IHeaderProps> = memo(({ className }: IHeaderProps) => {
 
   return (
     <section className={classnames(st.controls, className)}>
-      <LoginModal
-        isOpened={isModalOpened}
-        onOpen={handleOpenModal}
-        onClose={handleCloseModal}
-      />
+      {authData ? (
+        <Button theme={EButtonTheme.SECONDARY} onClick={handleLogout}>
+          {t("auth-logout")}
+        </Button>
+      ) : (
+        <LoginModal
+          isOpened={isModalOpened}
+          onOpen={handleOpenModal}
+          onClose={handleCloseModal}
+        />
+      )}
 
       <Button
         className={classnames(st.button, st.lang)}

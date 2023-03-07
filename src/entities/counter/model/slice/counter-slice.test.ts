@@ -1,4 +1,4 @@
-import { ICounterSchema } from "../type";
+import { ICounterSchema } from "../types";
 import { counterReducer, counterActions } from "./index";
 
 describe("counter slice", () => {

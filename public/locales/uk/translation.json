@@ -1,6 +1,8 @@
 {
   "sidebar-home": "Головна",
   "sidebar-about": "Про нас",
+  "auth-logout": "Вийти",
   "boundary-error": "Щось пішло не так...",
-  "boundary-error-button-text": "Перезавантажте сторінку"
+  "boundary-error-button-text": "Перезавантажте сторінку",
+  "globa-error": "Помилка"
 }
