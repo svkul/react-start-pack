@@ -3,15 +3,14 @@ import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 
-import {
-  useTheme,
-  ETheme,
-  LoginModal,
-  loginActions,
-  getIsModalOpen,
-} from "@features";
+import { useTheme, ETheme, LoginModal } from "@features";
 import { Button, EButtonTheme, Icon, EIcons } from "@shared";
-import { getUserAuthData, userActions } from "@entities";
+import {
+  getIsAuthPopupOpen,
+  getUserAuthData,
+  popupsActions,
+  userActions,
+} from "@entities";
 
 import st from "./header.module.css";
 
@@ -25,14 +24,14 @@ export const Header: FC<IHeaderProps> = memo(({ className }: IHeaderProps) => {
   const dispatch = useDispatch();
 
   const authData = useSelector(getUserAuthData);
-  const isModalOpened = useSelector(getIsModalOpen);
+  const isModalOpened = useSelector(getIsAuthPopupOpen);
 
   const handleOpenModal = useCallback(() => {
-    dispatch(loginActions.setModalOpen(true));
+    dispatch(popupsActions.setIsAuthPopupOpen(true));
   }, [dispatch]);
 
   const handleCloseModal = useCallback(() => {
-    dispatch(loginActions.reset());
+    dispatch(popupsActions.setIsAuthPopupOpen(false));
   }, [dispatch]);
 
   const handleLogout = useCallback(() => {

@@ -4,7 +4,7 @@ import i18n from "@app/i18n/index";
 
 import { USER_LOCALSTORAGE_KEY } from "@app/config";
 
-import { IUser, userActions } from "@entities";
+import { IUser, popupsActions, userActions } from "@entities";
 import { loginActions } from "@features";
 
 export interface ValidationError {
@@ -33,6 +33,7 @@ export const loginByUsername = createAsyncThunk<
     }
 
     thunkAPI.dispatch(userActions.setAuthData(response.data));
+    thunkAPI.dispatch(popupsActions.setIsAuthPopupOpen(false));
     thunkAPI.dispatch(loginActions.reset());
     localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data));
 

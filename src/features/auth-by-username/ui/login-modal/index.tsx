@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Button, EButtonTheme, Modal } from "@shared";
+import { Button, EButtonTheme, Loader, Modal } from "@shared";
 
-import { LoginForm } from "../login-form";
+import { LoginFormAsync } from "../login-form/login-form.async";
 
 interface ILoginModalProps {
   className?: string;
@@ -35,7 +35,9 @@ export const LoginModal: FC<ILoginModalProps> = ({
       isOpen={isOpened}
       onClose={onClose}
     >
-      <LoginForm />
+      <Suspense fallback={<Loader />}>
+        <LoginFormAsync />
+      </Suspense>
     </Modal>
   );
 };

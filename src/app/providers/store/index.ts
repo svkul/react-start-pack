@@ -1,2 +1,2 @@
-export { createReduxStore, IStateScheme } from "./config";
+export * from "./config";
 export { StoreProvider } from "./ui";

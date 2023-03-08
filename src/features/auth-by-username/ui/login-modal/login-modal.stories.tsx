@@ -25,6 +25,7 @@ Primary.decorators = [
     loginForm: {
       username: "admin",
       password: "123",
+      isLoading: false,
     },
   }),
 ];

@@ -1,10 +1,20 @@
-import { ChangeEvent, useCallback, memo } from "react";
+import { ChangeEvent, useCallback, memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ThunkDispatch } from "@reduxjs/toolkit";
 import { useTranslation } from "react-i18next";
 import classnames from "classnames";
 
-import { getLoginState, loginActions, loginByUsername } from "@features";
+import {
+  getAuthError,
+  getAuthIsLoading,
+  getAuthPassword,
+  getAuthUsername,
+  IUseDynamicModuleLoader,
+  loginActions,
+  loginByUsername,
+  loginReducer,
+  useDynamicReducerLoader,
+} from "@features";
 import { Button, Input } from "@shared";
 
 import st from "./login-form.module.css";
@@ -13,10 +23,36 @@ export interface ILoginFormProps {
   className?: string;
 }
 
-export const LoginForm = memo(({ className }: ILoginFormProps) => {
+const initialStoreModules: IUseDynamicModuleLoader[] = [
+  {
+    key: "loginForm",
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    reducer: loginReducer,
+  },
+];
+
+export default memo(({ className }: ILoginFormProps) => {
   const { t } = useTranslation("auth-form");
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-  const { username, password, error, isLoading } = useSelector(getLoginState);
+
+  const { addStoreDynamicModules, removeStoreDynamicModules } =
+    useDynamicReducerLoader(initialStoreModules);
+
+  useEffect(() => {
+    addStoreDynamicModules();
+
+    return () => {
+      removeStoreDynamicModules();
+    };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const error = useSelector(getAuthError);
+  const isLoading = useSelector(getAuthIsLoading);
+  const password = useSelector(getAuthPassword);
+  const username = useSelector(getAuthUsername);
 
   const handleUserNameChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {

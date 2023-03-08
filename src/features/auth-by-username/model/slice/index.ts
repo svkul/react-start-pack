@@ -6,16 +6,12 @@ const initialState: ILoginSchema = {
   isLoading: false,
   username: "",
   password: "",
-  isModalOpen: false,
 };
 
 export const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-    setModalOpen: (state, action: PayloadAction<boolean>) => {
-      state.isModalOpen = action.payload;
-    },
     setUserName: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
     },
