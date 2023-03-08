@@ -42,8 +42,12 @@ export interface IReduxStoreWithManager extends EnhancedStore<IStateScheme> {
   reducerManager: IReducerManager;
 }
 
-export function createReduxStore(initialState?: IStateScheme) {
+export function createReduxStore(
+  initialState?: IStateScheme,
+  asyncReducers?: ReducersMapObject<IStateScheme>,
+) {
   const rootReducers: ReducersMapObject<IStateScheme> = {
+    ...asyncReducers,
     counter: counterReducer,
     popups: popupsReducer,
     user: userReducer,
