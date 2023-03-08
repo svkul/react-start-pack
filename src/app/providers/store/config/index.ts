@@ -16,37 +16,37 @@ import {
   popupsReducer,
 } from "@entities";
 
-import { ILoginSchema } from "@features";
+import { IAuthSchema } from "@features";
 import { createReducerManager } from "./reducer-manager";
 
-export interface IStateScheme {
+export interface IStateSchema {
   counter: ICounterSchema;
   user: IUserSchema;
   popups: IPopupsSchema;
-  loginForm?: ILoginSchema;
+  authForm?: IAuthSchema;
 }
 
-export type IStateSchemeKey = keyof IStateScheme;
+export type IStateSchemaKey = keyof IStateSchema;
 
 export interface IReducerManager {
-  getReducerMap: () => ReducersMapObject<IStateScheme>;
+  getReducerMap: () => ReducersMapObject<IStateSchema>;
   reduce: (
-    state: IStateScheme,
+    state: IStateSchema,
     action: AnyAction,
-  ) => CombinedState<IStateScheme>;
-  add: (key: IStateSchemeKey, reducer: Reducer) => void;
-  remove: (key: IStateSchemeKey) => void;
+  ) => CombinedState<IStateSchema>;
+  add: (key: IStateSchemaKey, reducer: Reducer) => void;
+  remove: (key: IStateSchemaKey) => void;
 }
 
-export interface IReduxStoreWithManager extends EnhancedStore<IStateScheme> {
+export interface IReduxStoreWithManager extends EnhancedStore<IStateSchema> {
   reducerManager: IReducerManager;
 }
 
 export function createReduxStore(
-  initialState?: IStateScheme,
-  asyncReducers?: ReducersMapObject<IStateScheme>,
+  initialState?: IStateSchema,
+  asyncReducers?: ReducersMapObject<IStateSchema>,
 ) {
-  const rootReducers: ReducersMapObject<IStateScheme> = {
+  const rootReducers: ReducersMapObject<IStateSchema> = {
     ...asyncReducers,
     counter: counterReducer,
     popups: popupsReducer,
@@ -55,7 +55,7 @@ export function createReduxStore(
 
   const reducerManager = createReducerManager(rootReducers);
 
-  const store = configureStore<IStateScheme>({
+  const store = configureStore<IStateSchema>({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     reducer: reducerManager.reduce,

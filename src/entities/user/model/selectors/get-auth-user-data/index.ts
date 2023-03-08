@@ -1,3 +1,3 @@
-import { IStateScheme } from "@app/providers";
+import { IStateSchema } from "@app/providers";
 
-export const getUserAuthData = (state: IStateScheme) => state.user.authData;
+export const getUserAuthData = (state: IStateSchema) => state.user.authData;

@@ -4,13 +4,13 @@ import { I18nextProvider } from "react-i18next";
 import { MemoryRouter } from "react-router-dom";
 import { DeepPartial } from "@reduxjs/toolkit";
 
-import { IStateScheme, StoreProvider } from "@app/providers";
+import { IStateSchema, StoreProvider } from "@app/providers";
 
 import i18nTest from "../../i18n/i18n-test";
 
 export interface componentRenderOptions {
   route?: string;
-  initialState?: DeepPartial<IStateScheme>;
+  initialState?: DeepPartial<IStateSchema>;
 }
 
 export function renderWithProviders(

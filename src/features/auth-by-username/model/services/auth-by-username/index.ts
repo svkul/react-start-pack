@@ -5,21 +5,21 @@ import i18n from "@app/i18n/index";
 import { USER_LOCALSTORAGE_KEY } from "@app/config";
 
 import { IUser, popupsActions, userActions } from "@entities";
-import { loginActions } from "@features";
+import { authActions } from "@features";
 
 export interface ValidationError {
   message: string;
   errors: Record<string, string[]>;
 }
 
-interface ILoginByUsernameProps {
+interface IAuthByUsernameProps {
   username: string;
   password: string;
 }
 
-export const loginByUsername = createAsyncThunk<
+export const authByUsername = createAsyncThunk<
   IUser,
-  ILoginByUsernameProps,
+  IAuthByUsernameProps,
   { rejectValue: string }
 >("login/loginByUsername", async (userInfo, thunkAPI) => {
   try {
@@ -34,7 +34,7 @@ export const loginByUsername = createAsyncThunk<
 
     thunkAPI.dispatch(userActions.setAuthData(response.data));
     thunkAPI.dispatch(popupsActions.setIsAuthPopupOpen(false));
-    thunkAPI.dispatch(loginActions.reset());
+    thunkAPI.dispatch(authActions.reset());
     localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data));
 
     return response.data;
@@ -42,7 +42,7 @@ export const loginByUsername = createAsyncThunk<
     if (axios.isAxiosError<ValidationError, Record<string, unknown>>(error)) {
       return thunkAPI.rejectWithValue(error.response?.data.message || "");
     } else {
-      return thunkAPI.rejectWithValue(i18n.t("globa-error"));
+      return thunkAPI.rejectWithValue(i18n.t("global-error"));
     }
   }
 });

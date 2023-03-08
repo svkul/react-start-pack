@@ -3,13 +3,13 @@ import { AnyAction, Reducer } from "@reduxjs/toolkit";
 
 import {
   IReduxStoreWithManager,
-  IStateScheme,
-  IStateSchemeKey,
+  IStateSchema,
+  IStateSchemaKey,
 } from "@app/providers";
 
 export interface IUseDynamicModuleLoader {
-  key: IStateSchemeKey;
-  reducer: Reducer<IStateScheme, AnyAction>;
+  key: IStateSchemaKey;
+  reducer: Reducer<IStateSchema, AnyAction>;
   removeAfterUnmount?: boolean;
 }
 

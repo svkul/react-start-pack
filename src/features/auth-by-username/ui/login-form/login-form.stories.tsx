@@ -1,5 +1,5 @@
 import { StoreDecorator } from "@app/storybook/store-decorator";
-import { loginReducer } from "@features";
+import { authReducer } from "@features";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 
 import LoginForm from "./index";
@@ -21,9 +21,9 @@ Primary.args = {};
 Primary.decorators = [
   StoreDecorator({
     state: {
-      loginForm: { username: "admin", password: "123", isLoading: false },
+      authForm: { username: "admin", password: "123", isLoading: false },
     },
     // @ts-ignore
-    asyncReducers: { loginForm: loginReducer },
+    asyncReducers: { authForm: authReducer },
   }),
 ];

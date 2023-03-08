@@ -4,5 +4,5 @@
   "auth-logout": "Вийти",
   "boundary-error": "Щось пішло не так...",
   "boundary-error-button-text": "Перезавантажте сторінку",
-  "globa-error": "Помилка"
+  "global-error": "Помилка"
 }

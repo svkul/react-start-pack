@@ -10,9 +10,9 @@ import {
   getAuthPassword,
   getAuthUsername,
   IUseDynamicModuleLoader,
-  loginActions,
-  loginByUsername,
-  loginReducer,
+  authActions,
+  authByUsername,
+  authReducer,
   useDynamicReducerLoader,
 } from "@features";
 import { Button, Input } from "@shared";
@@ -25,10 +25,10 @@ export interface ILoginFormProps {
 
 const initialStoreModules: IUseDynamicModuleLoader[] = [
   {
-    key: "loginForm",
+    key: "authForm",
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
-    reducer: loginReducer,
+    reducer: authReducer,
   },
 ];
 
@@ -58,7 +58,7 @@ export default memo(({ className }: ILoginFormProps) => {
     (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
 
-      dispatch(loginActions.setUserName(value));
+      dispatch(authActions.setUserName(value));
     },
     [dispatch],
   );
@@ -67,13 +67,13 @@ export default memo(({ className }: ILoginFormProps) => {
     (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
 
-      dispatch(loginActions.setPassword(value));
+      dispatch(authActions.setPassword(value));
     },
     [dispatch],
   );
 
   const handleLoginClick = useCallback(() => {
-    dispatch(loginByUsername({ username, password }));
+    dispatch(authByUsername({ username, password }));
   }, [dispatch, username, password]);
 
   return (

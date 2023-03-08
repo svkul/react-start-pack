@@ -1,4 +1,4 @@
-import { IStateScheme } from "@app/providers";
+import { IStateSchema } from "@app/providers";
 
-export const getAuthPassword = (state: IStateScheme) =>
-  state?.loginForm?.password || "";
+export const getAuthPassword = (state: IStateSchema) =>
+  state?.authForm?.password || "";

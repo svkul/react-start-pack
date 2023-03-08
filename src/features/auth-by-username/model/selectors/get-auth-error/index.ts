@@ -1,4 +1,4 @@
-import { IStateScheme } from "@app/providers";
+import { IStateSchema } from "@app/providers";
 
-export const getAuthError = (state: IStateScheme) =>
-  state?.loginForm?.error || "";
+export const getAuthError = (state: IStateSchema) =>
+  state?.authForm?.error || "";

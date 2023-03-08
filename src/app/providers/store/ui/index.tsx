@@ -2,12 +2,12 @@ import { FC, ReactNode } from "react";
 import { Provider } from "react-redux";
 import { DeepPartial, ReducersMapObject } from "@reduxjs/toolkit";
 
-import { createReduxStore, IStateScheme } from "../config";
+import { createReduxStore, IStateSchema } from "../config";
 
 interface IStoreProviderProps {
   children: ReactNode;
-  initialState?: DeepPartial<IStateScheme>;
-  asyncReducers?: DeepPartial<ReducersMapObject<IStateScheme>>;
+  initialState?: DeepPartial<IStateSchema>;
+  asyncReducers?: DeepPartial<ReducersMapObject<IStateSchema>>;
 }
 
 export const StoreProvider: FC<IStoreProviderProps> = ({
@@ -16,8 +16,8 @@ export const StoreProvider: FC<IStoreProviderProps> = ({
   asyncReducers,
 }) => {
   const store = createReduxStore(
-    initialState as IStateScheme,
-    asyncReducers as ReducersMapObject<IStateScheme>,
+    initialState as IStateSchema,
+    asyncReducers as ReducersMapObject<IStateSchema>,
   );
 
   return <Provider store={store}>{children}</Provider>;

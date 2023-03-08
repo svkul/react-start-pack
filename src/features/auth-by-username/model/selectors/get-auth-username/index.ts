@@ -1,4 +1,4 @@
-import { IStateScheme } from "@app/providers";
+import { IStateSchema } from "@app/providers";
 
-export const getAuthUsername = (state: IStateScheme) =>
-  state?.loginForm?.username || "";
+export const getAuthUsername = (state: IStateSchema) =>
+  state?.authForm?.username || "";
