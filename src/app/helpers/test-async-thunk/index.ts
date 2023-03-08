@@ -3,6 +3,7 @@ import { AsyncThunkAction } from "@reduxjs/toolkit";
 
 type ActionCreatorType<Return, Arg, AsyncThunkConfig> = (
   arg: Arg,
+  // @ts-ignore
 ) => AsyncThunkAction<Return, Arg, AsyncThunkConfig>;
 
 export class TestAsyncThunk<Return, Arg, RejectedValue> {
