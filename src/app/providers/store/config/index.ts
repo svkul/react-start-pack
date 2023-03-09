@@ -1,3 +1,5 @@
+import { AxiosInstance } from "axios";
+import { NavigateOptions, To } from "react-router";
 import {
   AnyAction,
   CombinedState,
@@ -18,6 +20,7 @@ import {
 } from "@entities";
 
 import { IAuthSchema } from "@features";
+import { $api } from "@app/api";
 import { createReducerManager } from "./reducer-manager";
 
 export interface IStateSchema {
@@ -44,9 +47,15 @@ export interface IReduxStoreWithManager extends EnhancedStore<IStateSchema> {
   reducerManager: IReducerManager;
 }
 
+export interface IThunkExtraArg {
+  api: AxiosInstance;
+  navigate?: (to: To, options?: NavigateOptions) => void;
+}
+
 export function createReduxStore(
   initialState?: IStateSchema,
   asyncReducers?: ReducersMapObject<IStateSchema>,
+  navigate?: (to: To, options?: NavigateOptions) => void,
 ) {
   const rootReducers: ReducersMapObject<IStateSchema> = {
     ...asyncReducers,
@@ -57,11 +66,22 @@ export function createReduxStore(
 
   const reducerManager = createReducerManager(rootReducers);
 
+  const extraArg: IThunkExtraArg = {
+    api: $api,
+    navigate,
+  };
+
   const store = configureStore<IStateSchema>({
-    // @ts-ignore
-    reducer: reducerManager.reduce,
+    reducer: reducerManager.reduce as Reducer<CombinedState<IStateSchema>>,
     devTools: __IS_DEV__,
     preloadedState: initialState,
+    // @ts-ignore
+    middleware: getDefaultMiddleware =>
+      getDefaultMiddleware({
+        thunk: {
+          extraArgument: extraArg,
+        },
+      }),
   });
 
   // @ts-ignore

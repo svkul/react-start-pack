@@ -1,9 +1,8 @@
-import { authByUsername } from "@features";
 import { DeepPartial } from "@reduxjs/toolkit";
 import { IAuthSchema } from "../types";
 import { authReducer, authActions } from "./index";
 
-describe("counter slice", () => {
+describe("Auth slice", () => {
   test("should update username value", () => {
     const state: DeepPartial<IAuthSchema> = { username: "" };
 

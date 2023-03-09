@@ -8,6 +8,7 @@ import { IBuildPaths } from "../webpack/types";
 export function buildPlugins(
   paths: IBuildPaths,
   isDev: boolean,
+  apiUrl: string,
 ): webpack.WebpackPluginInstance[] {
   const plugins = [
     new HTMLWebpackPlugin({
@@ -26,6 +27,7 @@ export function buildPlugins(
     plugins.push(
       new webpack.DefinePlugin({
         __IS_DEV__: JSON.stringify(isDev),
+        __API__: JSON.stringify(apiUrl),
       }),
     );
   }

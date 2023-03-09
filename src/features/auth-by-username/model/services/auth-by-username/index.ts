@@ -6,6 +6,7 @@ import { USER_LOCALSTORAGE_KEY } from "@app/config";
 
 import { IUser, popupsActions, userActions } from "@entities";
 import { authActions } from "@features";
+import { IThunkExtraArg } from "@app/providers";
 
 export interface ValidationError {
   message: string;
@@ -20,29 +21,28 @@ interface IAuthByUsernameProps {
 export const authByUsername = createAsyncThunk<
   IUser,
   IAuthByUsernameProps,
-  { rejectValue: string }
+  { rejectValue: string; extra: IThunkExtraArg }
 >("login/loginByUsername", async (userInfo, thunkAPI) => {
+  const { extra, dispatch, rejectWithValue } = thunkAPI;
+
   try {
-    const response = await axios.post<IUser>(
-      "http://localhost:8000/login",
-      userInfo,
-    );
+    const response = await extra.api.post<IUser>("/login", userInfo);
 
     if (!response.data) {
       throw new Error("Invalid response");
     }
 
-    thunkAPI.dispatch(userActions.setAuthData(response.data));
-    thunkAPI.dispatch(popupsActions.setIsAuthPopupOpen(false));
-    thunkAPI.dispatch(authActions.reset());
+    dispatch(userActions.setAuthData(response.data));
+    dispatch(popupsActions.setIsAuthPopupOpen(false));
+    dispatch(authActions.reset());
     localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data));
 
     return response.data;
   } catch (error) {
     if (axios.isAxiosError<ValidationError, Record<string, unknown>>(error)) {
-      return thunkAPI.rejectWithValue(error.response?.data.message || "");
+      return rejectWithValue(error.response?.data.message || "");
     } else {
-      return thunkAPI.rejectWithValue(i18n.t("global-error"));
+      return rejectWithValue(i18n.t("global-error"));
     }
   }
 });

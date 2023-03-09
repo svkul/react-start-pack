@@ -1,3 +1,7 @@
 {
-  "profile-page": "Профіль"
+  "profile-page": "Профіль",
+  "profile-name": "Ім'я",
+  "profile-country": "Країна",
+  "profile-edit": "Редагувати",
+  "profile-cancel": "Скасувати"
 }

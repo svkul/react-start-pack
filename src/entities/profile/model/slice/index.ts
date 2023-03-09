@@ -1,5 +1,6 @@
+import { getProfileData } from "@entities";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IProfileSchema } from "../types";
+import { IProfile, IProfileSchema } from "../types";
 
 const initialState: IProfileSchema = {
   isLoading: false,
@@ -11,10 +12,24 @@ const initialState: IProfileSchema = {
 export const profileSlice = createSlice({
   name: "profile",
   initialState,
-  reducers: {
-    setIsLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
-    },
+  reducers: {},
+  extraReducers: builder => {
+    builder
+      .addCase(getProfileData.pending, state => {
+        state.error = undefined;
+        state.isLoading = true;
+      })
+      .addCase(
+        getProfileData.fulfilled,
+        (state, action: PayloadAction<IProfile>) => {
+          state.data = action.payload;
+          state.isLoading = false;
+        },
+      )
+      .addCase(getProfileData.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isLoading = false;
+      });
   },
 });
 

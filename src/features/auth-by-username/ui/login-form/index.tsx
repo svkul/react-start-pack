@@ -1,6 +1,5 @@
 import { ChangeEvent, useCallback, memo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ThunkDispatch } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import classnames from "classnames";
 
@@ -20,6 +19,7 @@ import {
 import { Button, Input } from "@shared";
 
 import st from "./login-form.module.css";
+import { useAppDispatch } from "@app/hooks";
 
 export interface ILoginFormProps {
   className?: string;
@@ -28,7 +28,6 @@ export interface ILoginFormProps {
 const initialStoreModules: IUseDynamicModuleLoader[] = [
   {
     key: "authForm",
-    // @ts-ignore
     reducer: authReducer,
     removeAfterUnmount: true,
   },
@@ -36,7 +35,7 @@ const initialStoreModules: IUseDynamicModuleLoader[] = [
 
 export default memo(({ className }: ILoginFormProps) => {
   const { t } = useTranslation("auth-form");
-  const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
+  const dispatch = useAppDispatch();
 
   const { addStoreDynamicModules, removeStoreDynamicModules } =
     useDynamicReducerLoader(initialStoreModules);
@@ -75,7 +74,9 @@ export default memo(({ className }: ILoginFormProps) => {
   );
 
   const handleLoginClick = useCallback(async () => {
-    const result = await dispatch(authByUsername({ username, password }));
+    // @ts-ignore
+    await dispatch(authByUsername({ username, password }));
+    // const result = await dispatch(authByUsername({ username, password }));
     // console.log(result);
   }, [dispatch, username, password]);
 

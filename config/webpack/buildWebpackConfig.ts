@@ -10,9 +10,9 @@ import {
 import { IBuildOptions } from "./types";
 
 export function buildWebpackConfig(
-  options: IBuildOptions
+  options: IBuildOptions,
 ): webpack.Configuration {
-  const { mode, paths, isDev } = options;
+  const { mode, paths, isDev, apiUrl } = options;
 
   return {
     mode, // модифікація збірки
@@ -23,7 +23,7 @@ export function buildWebpackConfig(
       path: paths.build,
       clean: true, // очищення файлів в папці збірки перед новою збіркою
     },
-    plugins: buildPlugins(paths, isDev),
+    plugins: buildPlugins(paths, isDev, apiUrl),
     module: {
       rules: buildLoaders(isDev),
     },

@@ -1,0 +1,11 @@
+.wrapper {
+  padding: 16px;
+  box-shadow: var(--modal-box-shadow);
+}
+
+.content {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

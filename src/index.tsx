@@ -20,10 +20,10 @@ if (container) {
   }
 
   root.render(
-    <StoreProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <StoreProvider>
         <App />
-      </BrowserRouter>
-    </StoreProvider>,
+      </StoreProvider>
+    </BrowserRouter>,
   );
 }

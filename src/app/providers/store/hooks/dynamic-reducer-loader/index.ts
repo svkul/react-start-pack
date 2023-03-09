@@ -1,17 +1,17 @@
 import { useStore } from "react-redux";
 import { AnyAction, Reducer } from "@reduxjs/toolkit";
 
-import {
-  IReduxStoreWithManager,
-  IStateSchema,
-  IStateSchemaKey,
-} from "@app/providers";
+import { IReduxStoreWithManager, IStateSchemaKey } from "@app/providers";
 
 export interface IUseDynamicModuleLoader {
   key: IStateSchemaKey;
-  reducer: Reducer<IStateSchema, AnyAction>;
+  reducer: Reducer<any, AnyAction>;
   removeAfterUnmount?: boolean;
 }
+
+export type IReducersList = {
+  [name in IStateSchemaKey]?: Reducer;
+};
 
 export const useDynamicReducerLoader = (modules: IUseDynamicModuleLoader[]) => {
   const store = useStore() as IReduxStoreWithManager;

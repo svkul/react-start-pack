@@ -26,7 +26,6 @@ Primary.decorators = [
     state: {
       authForm: { username: "admin", password: "123", isLoading: false },
     },
-    // @ts-ignore
     asyncReducers: { authForm: authReducer },
   }),
 ];

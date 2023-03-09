@@ -24,4 +24,5 @@ export interface IBuildOptions {
   paths: IBuildPaths;
   isDev: boolean;
   port: number;
+  apiUrl: string;
 }

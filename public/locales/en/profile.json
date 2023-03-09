@@ -1,3 +1,7 @@
 {
-  "profile-page": "Profile"
+  "profile-page": "Profile",
+  "profile-name": "Name",
+  "profile-country": "Country",
+  "profile-edit": "Edit",
+  "profile-cancel": "Cancel"
 }
