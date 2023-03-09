@@ -1,9 +1,9 @@
 import { FC, Suspense, useEffect } from "react";
-import { useDispatch } from "react-redux";
 
-import { Sidebar, Header } from "@widgets";
+import { NavList, Header } from "@widgets";
 import { Icons, Loader } from "@shared";
 import { userActions } from "@entities";
+import { useAppDispatch } from "./hooks";
 
 import { AppRouter } from "./router";
 import { ErrorBoundary } from "./providers";
@@ -13,7 +13,7 @@ import st from "./app.module.css";
 import "./i18n/index";
 
 export const App: FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(userActions.initAuthData());
@@ -29,7 +29,7 @@ export const App: FC = () => {
         </header>
 
         <section className={st.sidebar}>
-          <Sidebar />
+          <NavList />
         </section>
 
         <main className={st.main}>

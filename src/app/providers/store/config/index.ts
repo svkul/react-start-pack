@@ -14,6 +14,7 @@ import {
   IPopupsSchema,
   userReducer,
   popupsReducer,
+  IProfileSchema,
 } from "@entities";
 
 import { IAuthSchema } from "@features";
@@ -24,6 +25,7 @@ export interface IStateSchema {
   user: IUserSchema;
   popups: IPopupsSchema;
   authForm?: IAuthSchema;
+  profile?: IProfileSchema;
 }
 
 export type IStateSchemaKey = keyof IStateSchema;
@@ -56,16 +58,16 @@ export function createReduxStore(
   const reducerManager = createReducerManager(rootReducers);
 
   const store = configureStore<IStateSchema>({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     reducer: reducerManager.reduce,
     devTools: __IS_DEV__,
     preloadedState: initialState,
   });
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   store.reducerManager = reducerManager;
 
   return store;
 }
+
+export type AppDispatch = ReturnType<typeof createReduxStore>["dispatch"];

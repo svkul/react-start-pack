@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { popupsActions, userActions } from "@entities";
-import { TestAsyncThunk } from "@app/helpers";
+import { TestAsyncThunk } from "@app/config/test-helpers";
 import { authActions } from "@features";
 
 import { authByUsername } from ".";
@@ -13,8 +13,9 @@ const mockedAxios = jest.mocked(axios, { shallow: true });
 describe("get auth by username", () => {
   test("should be fulfilled with valid data", async () => {
     const userValue = { username: "admin", id: "1" };
-    // @ts-ignore
-    mockedAxios.post.mockReturnValue(Promise.resolve({ data: userValue }));
+    (mockedAxios.post as jest.Mock).mockReturnValue(
+      Promise.resolve({ data: userValue }),
+    );
 
     const thunk = new TestAsyncThunk(authByUsername);
     const response = await thunk.callThunk({
@@ -35,8 +36,9 @@ describe("get auth by username", () => {
   });
 
   test("should be rejected, when status 403", async () => {
-    // @ts-ignore
-    mockedAxios.post.mockReturnValue(Promise.resolve({ status: 403 }));
+    (mockedAxios.post as jest.Mock).mockReturnValue(
+      Promise.resolve({ status: 403 }),
+    );
 
     const thunk = new TestAsyncThunk(authByUsername);
     const response = await thunk.callThunk({

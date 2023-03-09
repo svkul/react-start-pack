@@ -6,7 +6,7 @@ import { DeepPartial } from "@reduxjs/toolkit";
 
 import { IStateSchema, StoreProvider } from "@app/providers";
 
-import i18nTest from "../../i18n/i18n-test";
+import i18nTest from "../../../i18n/i18n-test";
 
 export interface componentRenderOptions {
   route?: string;

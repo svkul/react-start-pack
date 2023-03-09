@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { useTranslation } from "react-i18next";
 
 import { Counter } from "@entities";
 
-export default () => {
+export default memo(() => {
   const { t } = useTranslation("about");
 
   return (
@@ -12,4 +13,4 @@ export default () => {
       <Counter />
     </div>
   );
-};
+});

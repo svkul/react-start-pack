@@ -1,2 +1,2 @@
-export { Sidebar } from "./sidebar";
+export { NavList } from "./sidebar";
 export { Header } from "./header";

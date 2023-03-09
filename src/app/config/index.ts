@@ -1,1 +1,1 @@
-export const USER_LOCALSTORAGE_KEY = "user";
+export * from "./consts";

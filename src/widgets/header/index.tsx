@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import classnames from "classnames";
 
 import { useTheme, ETheme, LoginModal } from "@features";
@@ -11,6 +11,7 @@ import {
   popupsActions,
   userActions,
 } from "@entities";
+import { useAppDispatch } from "@app/hooks";
 
 import st from "./header.module.css";
 
@@ -21,7 +22,7 @@ interface IHeaderProps {
 export const Header: FC<IHeaderProps> = memo(({ className }: IHeaderProps) => {
   const { theme, toggleTheme } = useTheme();
   const { t, i18n } = useTranslation();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const authData = useSelector(getUserAuthData);
   const isModalOpened = useSelector(getIsAuthPopupOpen);

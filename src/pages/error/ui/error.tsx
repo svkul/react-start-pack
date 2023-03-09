@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { useTranslation } from "react-i18next";
 
-export default () => {
+export default memo(() => {
   const { t } = useTranslation("error");
 
   return (
@@ -9,4 +10,4 @@ export default () => {
       <p>{t("error-page")}!</p>
     </>
   );
-};
+});

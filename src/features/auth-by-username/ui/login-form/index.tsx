@@ -9,12 +9,14 @@ import {
   getAuthIsLoading,
   getAuthPassword,
   getAuthUsername,
-  IUseDynamicModuleLoader,
   authActions,
   authByUsername,
   authReducer,
-  useDynamicReducerLoader,
 } from "@features";
+import {
+  IUseDynamicModuleLoader,
+  useDynamicReducerLoader,
+} from "@app/providers/store";
 import { Button, Input } from "@shared";
 
 import st from "./login-form.module.css";
@@ -26,9 +28,9 @@ export interface ILoginFormProps {
 const initialStoreModules: IUseDynamicModuleLoader[] = [
   {
     key: "authForm",
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
+    // @ts-ignore
     reducer: authReducer,
+    removeAfterUnmount: true,
   },
 ];
 
@@ -72,8 +74,9 @@ export default memo(({ className }: ILoginFormProps) => {
     [dispatch],
   );
 
-  const handleLoginClick = useCallback(() => {
-    dispatch(authByUsername({ username, password }));
+  const handleLoginClick = useCallback(async () => {
+    const result = await dispatch(authByUsername({ username, password }));
+    // console.log(result);
   }, [dispatch, username, password]);
 
   return (

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import classnames from "classnames";
 
 import { Button } from "@shared";
@@ -8,13 +8,14 @@ import { getCounterValue } from "../model/selectors";
 import { counterActions } from "../model/slice";
 
 import st from "./counter.module.css";
+import { useAppDispatch } from "@app/hooks";
 
 interface ICounterProps {
   className?: string;
 }
 
 export const Counter: FC<ICounterProps> = ({ className }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const counterValue = useSelector(getCounterValue);
 
   const increment = () => {
