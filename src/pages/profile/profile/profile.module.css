@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+}
+
+.title {
+  margin: 0 16px 16px 0;
+}
+
+.controls {
+  margin-left: auto;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+}

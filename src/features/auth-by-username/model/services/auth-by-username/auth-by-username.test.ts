@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { popupsActions, userActions } from "@entities";
 import { TestAsyncThunk } from "@app/config/test-helpers";
 import { authActions } from "@features";

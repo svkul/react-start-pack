@@ -25,5 +25,8 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "Serhii", "country": "Ukraine" }
+  "profile": {
+    "name": "Serhii",
+    "country": "Ukraine"
+  }
 }

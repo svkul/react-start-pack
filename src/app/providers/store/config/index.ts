@@ -71,11 +71,10 @@ export function createReduxStore(
     navigate,
   };
 
-  const store = configureStore<IStateSchema>({
+  const store = configureStore({
     reducer: reducerManager.reduce as Reducer<CombinedState<IStateSchema>>,
     devTools: __IS_DEV__,
     preloadedState: initialState,
-    // @ts-ignore
     middleware: getDefaultMiddleware =>
       getDefaultMiddleware({
         thunk: {

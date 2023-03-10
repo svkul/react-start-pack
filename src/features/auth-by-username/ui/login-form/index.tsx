@@ -1,5 +1,4 @@
 import { ChangeEvent, useCallback, memo, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import classnames from "classnames";
 
@@ -19,7 +18,7 @@ import {
 import { Button, Input } from "@shared";
 
 import st from "./login-form.module.css";
-import { useAppDispatch } from "@app/hooks";
+import { useAppDispatch, useAppSelector } from "@app/hooks";
 
 export interface ILoginFormProps {
   className?: string;
@@ -50,10 +49,10 @@ export default memo(({ className }: ILoginFormProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const error = useSelector(getAuthError);
-  const isLoading = useSelector(getAuthIsLoading);
-  const password = useSelector(getAuthPassword);
-  const username = useSelector(getAuthUsername);
+  const error = useAppSelector(getAuthError);
+  const isLoading = useAppSelector(getAuthIsLoading);
+  const password = useAppSelector(getAuthPassword);
+  const username = useAppSelector(getAuthUsername);
 
   const handleUserNameChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +73,6 @@ export default memo(({ className }: ILoginFormProps) => {
   );
 
   const handleLoginClick = useCallback(async () => {
-    // @ts-ignore
     await dispatch(authByUsername({ username, password }));
     // const result = await dispatch(authByUsername({ username, password }));
     // console.log(result);

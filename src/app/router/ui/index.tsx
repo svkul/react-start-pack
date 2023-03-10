@@ -1,8 +1,14 @@
-import { FC, Suspense } from "react";
+import { FC, Suspense, memo, useMemo } from "react";
 import { Routes, Route, RouteProps } from "react-router-dom";
 
 import { Home, About, Error, Profile } from "@pages";
 import { Loader } from "@shared";
+import { useAppSelector } from "@app/hooks";
+import { getUserAuthData } from "@entities";
+
+type AppRoutesProps = RouteProps & {
+  authOnly?: boolean;
+};
 
 export enum AppRoutes {
   MAIN = "main",
@@ -11,7 +17,7 @@ export enum AppRoutes {
   ATHER = "*",
 }
 
-export const routes: Record<AppRoutes, RouteProps> = {
+export const routes: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.MAIN]: {
     path: "/",
     element: <Home />,
@@ -23,6 +29,7 @@ export const routes: Record<AppRoutes, RouteProps> = {
   [AppRoutes.PROFILE]: {
     path: "/profile",
     element: <Profile />,
+    authOnly: true,
   },
   [AppRoutes.ATHER]: {
     path: "*",
@@ -30,14 +37,26 @@ export const routes: Record<AppRoutes, RouteProps> = {
   },
 };
 
-export const AppRouter: FC = () => {
+export const AppRouter: FC = memo(() => {
+  const isAuth = useAppSelector(getUserAuthData);
+
+  const availibleRoutes = useMemo(() => {
+    return Object.values(routes).filter(route => {
+      if (route.authOnly && !isAuth) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [isAuth]);
+
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        {Object.entries(routes).map(([rout, routData]) => (
-          <Route key={rout} path={routData.path} element={routData.element} />
+        {Object.values(availibleRoutes).map(rout => (
+          <Route key={rout.path} path={rout.path} element={rout.element} />
         ))}
       </Routes>
     </Suspense>
   );
-};
+});

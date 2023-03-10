@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useSelector } from "react-redux";
 import classnames from "classnames";
 
 import { Button } from "@shared";
@@ -8,7 +7,7 @@ import { getCounterValue } from "../model/selectors";
 import { counterActions } from "../model/slice";
 
 import st from "./counter.module.css";
-import { useAppDispatch } from "@app/hooks";
+import { useAppDispatch, useAppSelector } from "@app/hooks";
 
 interface ICounterProps {
   className?: string;
@@ -16,7 +15,7 @@ interface ICounterProps {
 
 export const Counter: FC<ICounterProps> = ({ className }) => {
   const dispatch = useAppDispatch();
-  const counterValue = useSelector(getCounterValue);
+  const counterValue = useAppSelector(getCounterValue);
 
   const increment = () => {
     dispatch(counterActions.increment());

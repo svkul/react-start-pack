@@ -3,5 +3,6 @@
   "profile-name": "Name",
   "profile-country": "Country",
   "profile-edit": "Edit",
-  "profile-cancel": "Cancel"
+  "profile-cancel": "Cancel",
+  "profile-save": "Save"
 }

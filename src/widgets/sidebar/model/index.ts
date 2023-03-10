@@ -3,6 +3,7 @@ import { routes, AppRoutes } from "@app/router";
 export interface ISidebarItem {
   title: string;
   to: string;
+  authOnly?: boolean;
 }
 
 export const SidebarItemsList: ISidebarItem[] = [
@@ -17,5 +18,6 @@ export const SidebarItemsList: ISidebarItem[] = [
   {
     title: "sidebar-profile",
     to: routes[AppRoutes.PROFILE].path!,
+    authOnly: true,
   },
 ];
