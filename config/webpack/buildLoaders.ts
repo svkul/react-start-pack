@@ -6,6 +6,11 @@ export function buildLoaders(isDev: boolean): webpack.RuleSetRule[] {
     test: /\.(js|jsx|tsx")$/,
     use: {
       loader: "babel-loader",
+      options: {
+        plugins: [isDev && require.resolve("react-refresh/babel")].filter(
+          Boolean,
+        ),
+      },
     },
     exclude: /node_modules/,
   };
