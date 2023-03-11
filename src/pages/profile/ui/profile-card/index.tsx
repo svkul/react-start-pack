@@ -44,11 +44,9 @@ export const ProfileCard = memo(
         ) : (
           <>
             <div className={st.content}>
-              {username && readOnly && (
-                <p>
-                  {t("profile-name")}: {username}
-                </p>
-              )}
+              <p>
+                {t("profile-name")}: {username && readOnly && username}
+              </p>
 
               {username && !readOnly && (
                 <Input
@@ -59,11 +57,9 @@ export const ProfileCard = memo(
                 />
               )}
 
-              {country && readOnly && (
-                <p>
-                  {t("profile-country")}: {country}
-                </p>
-              )}
+              <p>
+                {t("profile-country")}: {country && readOnly && country}
+              </p>
 
               {country && !readOnly && (
                 <Input

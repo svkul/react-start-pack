@@ -23,6 +23,7 @@ export default (env: IBuildEnv) => {
     isDev: env.mode === "development",
     port: env.port,
     apiUrl: "http://localhost:8000/",
+    project: "frontend",
   };
 
   const config: webpack.Configuration = buildWebpackConfig(options);

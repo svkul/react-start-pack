@@ -18,6 +18,10 @@ i18n.use(initReactI18next).init({
         "auth-form-placeholder-name": "Name",
         "auth-form-placeholder-password": "Password",
       },
+      profile: {
+        "profile-name": "Name",
+        "profile-country": "Country",
+      },
     },
   },
 });

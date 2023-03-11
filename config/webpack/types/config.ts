@@ -19,10 +19,13 @@ export interface IBuildEnv {
   port: number;
 }
 
+export type TProjectType = "storybook" | "frontend" | "jest";
+
 export interface IBuildOptions {
   mode: TBuildMode;
   paths: IBuildPaths;
   isDev: boolean;
   port: number;
   apiUrl: string;
+  project: TProjectType;
 }

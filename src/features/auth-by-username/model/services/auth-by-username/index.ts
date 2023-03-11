@@ -42,7 +42,7 @@ export const authByUsername = createAsyncThunk<
     if (axios.isAxiosError<ValidationError, Record<string, unknown>>(error)) {
       return rejectWithValue(error.response?.data.message || "");
     } else {
-      return rejectWithValue(i18n.t("global-error"));
+      return rejectWithValue(i18n.t("server-error"));
     }
   }
 });

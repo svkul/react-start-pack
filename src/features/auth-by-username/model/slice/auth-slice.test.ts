@@ -18,4 +18,17 @@ describe("Auth slice", () => {
       authReducer(state as IAuthSchema, authActions.setPassword("test")),
     ).toEqual({ password: "test" });
   });
+
+  test("should reset state values", () => {
+    const state: DeepPartial<IAuthSchema> = {
+      password: "123",
+      username: "test",
+    };
+
+    expect(authReducer(state as IAuthSchema, authActions.reset())).toEqual({
+      isLoading: false,
+      username: "",
+      password: "",
+    });
+  });
 });

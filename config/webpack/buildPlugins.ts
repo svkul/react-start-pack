@@ -3,12 +3,13 @@ import HTMLWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
-import { IBuildPaths } from "../webpack/types";
+import { IBuildPaths, TProjectType } from "../webpack/types";
 
 export function buildPlugins(
   paths: IBuildPaths,
   isDev: boolean,
   apiUrl: string,
+  project: TProjectType,
 ): webpack.WebpackPluginInstance[] {
   const plugins = [
     new HTMLWebpackPlugin({
@@ -28,6 +29,7 @@ export function buildPlugins(
       new webpack.DefinePlugin({
         __IS_DEV__: JSON.stringify(isDev),
         __API__: JSON.stringify(apiUrl),
+        __PROJECT__: JSON.stringify(project),
       }),
     );
   }

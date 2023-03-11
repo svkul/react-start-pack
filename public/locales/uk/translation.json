@@ -5,5 +5,5 @@
   "auth-logout": "Вийти",
   "boundary-error": "Щось пішло не так...",
   "boundary-error-button-text": "Перезавантажте сторінку",
-  "global-error": "Помилка"
+  "server-error": "Серверна помилка"
 }

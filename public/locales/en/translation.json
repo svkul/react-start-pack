@@ -5,5 +5,5 @@
   "auth-logout": "Logout",
   "boundary-error": "An unexpected error has occurred...",
   "boundary-error-button-text": "Reload the page",
-  "global-error": "Error"
+  "server-error": "Server error"
 }

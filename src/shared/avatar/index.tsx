@@ -1,4 +1,7 @@
 import { CSSProperties, memo, useMemo } from "react";
+import classnames from "classnames";
+
+import st from "./avatar.module.css";
 
 interface IAvatarProps {
   className?: string;
@@ -17,6 +20,10 @@ export const Avatar = memo(
       };
     }, [width, height]);
 
-    return <img className={className} src={src} style={styles} alt={alt} />;
+    return (
+      <div className={classnames(st.wrapper, className)} style={styles}>
+        <img src={src} alt={alt} />
+      </div>
+    );
   },
 );

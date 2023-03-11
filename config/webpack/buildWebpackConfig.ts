@@ -12,7 +12,7 @@ import { IBuildOptions } from "./types";
 export function buildWebpackConfig(
   options: IBuildOptions,
 ): webpack.Configuration {
-  const { mode, paths, isDev, apiUrl } = options;
+  const { mode, paths, isDev, apiUrl, project } = options;
 
   return {
     mode, // модифікація збірки
@@ -23,7 +23,7 @@ export function buildWebpackConfig(
       path: paths.build,
       clean: true, // очищення файлів в папці збірки перед новою збіркою
     },
-    plugins: buildPlugins(paths, isDev, apiUrl),
+    plugins: buildPlugins(paths, isDev, apiUrl, project),
     module: {
       rules: buildLoaders(isDev),
     },
