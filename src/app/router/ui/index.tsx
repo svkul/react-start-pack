@@ -1,13 +1,13 @@
-import { FC, Suspense, memo, useMemo } from "react";
+import { FC, Suspense, memo } from "react";
 import { Routes, Route, RouteProps } from "react-router-dom";
 
 import { Home, About, Error, Profile } from "@pages";
 import { Loader } from "@shared";
-import { useAppSelector } from "@app/hooks";
-import { getUserAuthData } from "@entities";
+import { RequireAuth } from "./require-auth";
 
 type AppRoutesProps = RouteProps & {
   authOnly?: boolean;
+  element: JSX.Element;
 };
 
 export enum AppRoutes {
@@ -38,23 +38,21 @@ export const routes: Record<AppRoutes, AppRoutesProps> = {
 };
 
 export const AppRouter: FC = memo(() => {
-  const isAuth = useAppSelector(getUserAuthData);
-
-  const availibleRoutes = useMemo(() => {
-    return Object.values(routes).filter(route => {
-      if (route.authOnly && !isAuth) {
-        return false;
-      }
-
-      return true;
-    });
-  }, [isAuth]);
-
   return (
     <Suspense fallback={<Loader />}>
       <Routes>
-        {Object.values(availibleRoutes).map(rout => (
-          <Route key={rout.path} path={rout.path} element={rout.element} />
+        {Object.values(routes).map(rout => (
+          <Route
+            key={rout.path}
+            path={rout.path}
+            element={
+              rout.authOnly ? (
+                <RequireAuth>{rout.element}</RequireAuth>
+              ) : (
+                rout.element
+              )
+            }
+          />
         ))}
       </Routes>
     </Suspense>
