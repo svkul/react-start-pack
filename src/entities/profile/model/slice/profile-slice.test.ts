@@ -63,7 +63,7 @@ describe("profile slice", () => {
     expect(profileReducer(state, updateProfileData.rejected)).toEqual({
       ...state,
       isLoading: false,
-      error: undefined,
+      error: "",
     });
   });
 });

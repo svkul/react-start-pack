@@ -1,4 +1,5 @@
-export interface ValidationError {
-  message: string;
-  errors: Record<string, string[]>;
+export interface IErrorResponse {
+  status: number;
+  statusText: string;
+  message?: string;
 }

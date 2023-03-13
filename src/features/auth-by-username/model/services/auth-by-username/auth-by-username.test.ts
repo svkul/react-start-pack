@@ -40,6 +40,6 @@ describe("get auth by username", () => {
 
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
     expect(response.meta.requestStatus).toBe("rejected");
-    expect(response.payload).toEqual("server-error");
+    expect(response.payload).toEqual(undefined);
   });
 });

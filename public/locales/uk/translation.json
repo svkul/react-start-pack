@@ -1,6 +1,7 @@
 {
   "sidebar-home": "Головна",
   "sidebar-about": "Про нас",
+  "sidebar-articles": "Статті",
   "sidebar-profile": "Профіль",
   "auth-logout": "Вийти",
   "boundary-error": "Щось пішло не так...",

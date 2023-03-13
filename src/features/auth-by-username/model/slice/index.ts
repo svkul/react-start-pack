@@ -30,7 +30,10 @@ export const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(authByUsername.rejected, (state, action) => {
-        state.error = action.payload;
+        if (action.payload) {
+          state.error = action.payload;
+        }
+
         state.isLoading = false;
       });
   },

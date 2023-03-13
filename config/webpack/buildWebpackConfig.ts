@@ -22,6 +22,7 @@ export function buildWebpackConfig(
       filename: "[name].[contenthash].js", // шаблон для попередження кешування файлу
       path: paths.build,
       clean: true, // очищення файлів в папці збірки перед новою збіркою
+      publicPath: "/",
     },
     plugins: buildPlugins(paths, isDev, apiUrl, project),
     module: {

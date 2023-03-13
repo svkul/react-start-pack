@@ -16,6 +16,11 @@ export const SidebarItemsList: ISidebarItem[] = [
     to: routes[AppRoutes.ABOUT].path!,
   },
   {
+    title: "sidebar-articles",
+    to: routes[AppRoutes.ARTICLES].path!,
+    authOnly: true,
+  },
+  {
     title: "sidebar-profile",
     to: routes[AppRoutes.PROFILE].path!,
     authOnly: true,

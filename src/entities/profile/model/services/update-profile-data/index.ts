@@ -1,9 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-import i18n from "@app/i18n/index";
+import { AxiosError } from "axios";
 
 import { IStateSchema, IThunkExtraArg } from "@app/providers";
-import { ValidationError } from "@app/api";
+import { IErrorResponse } from "@app/api";
 import { IProfile } from "../../types";
 import { getProfileForm } from "@entities";
 
@@ -25,10 +24,11 @@ export const updateProfileData = createAsyncThunk<
 
     return response.data;
   } catch (error) {
-    if (axios.isAxiosError<ValidationError, Record<string, unknown>>(error)) {
-      return rejectWithValue(error.response?.data.message || "");
-    } else {
-      return rejectWithValue(i18n.t("server-error"));
+    const err: AxiosError<IErrorResponse> = error as any;
+    if (!err.response) {
+      throw error;
     }
+
+    return rejectWithValue(err.response.statusText);
   }
 });

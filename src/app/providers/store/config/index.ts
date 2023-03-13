@@ -1,5 +1,7 @@
 import { AxiosInstance } from "axios";
 import { NavigateOptions, To } from "react-router";
+import { Location } from "react-router";
+
 import {
   AnyAction,
   CombinedState,
@@ -17,6 +19,8 @@ import {
   userReducer,
   popupsReducer,
   IProfileSchema,
+  IArticlesSchema,
+  IArticleSchema,
 } from "@entities";
 
 import { IAuthSchema } from "@features";
@@ -29,6 +33,8 @@ export interface IStateSchema {
   popups: IPopupsSchema;
   authForm?: IAuthSchema;
   profile?: IProfileSchema;
+  articles?: IArticlesSchema;
+  article?: IArticleSchema;
 }
 
 export type IStateSchemaKey = keyof IStateSchema;
@@ -50,12 +56,14 @@ export interface IReduxStoreWithManager extends EnhancedStore<IStateSchema> {
 export interface IThunkExtraArg {
   api: AxiosInstance;
   navigate?: (to: To, options?: NavigateOptions) => void;
+  location?: Location;
 }
 
 export function createReduxStore(
   initialState?: IStateSchema,
   asyncReducers?: ReducersMapObject<IStateSchema>,
   navigate?: (to: To, options?: NavigateOptions) => void,
+  location?: Location,
 ) {
   const rootReducers: ReducersMapObject<IStateSchema> = {
     ...asyncReducers,
@@ -69,6 +77,7 @@ export function createReduxStore(
   const extraArg: IThunkExtraArg = {
     api: $api,
     navigate,
+    location,
   };
 
   const store = configureStore({
